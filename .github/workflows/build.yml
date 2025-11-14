@@ -9,12 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -23,10 +20,11 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build with Gradle
+      - name: Build with Gradle (install Gradle since no wrapper)
         uses: gradle/gradle-build-action@v3
         with:
-          arguments: build
+          gradle-version: '8.3'
+          arguments: build --no-daemon
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
