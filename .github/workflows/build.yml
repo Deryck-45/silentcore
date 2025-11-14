@@ -1,0 +1,33 @@
+name: Build SilentCore
+
+on:
+  push:
+    branches: [ main, add-silentcore-files ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build with Gradle (install Gradle since no wrapper)
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: '8.3'
+          arguments: build --no-daemon
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: silentcore-jar
+          path: build/libs/*.jar
