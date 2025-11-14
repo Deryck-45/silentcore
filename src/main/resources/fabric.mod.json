@@ -1,0 +1,26 @@
+{  
+  "schemaVersion": 1,
+  "id": "silentcore",
+  "version": "${version}",
+  "name": "SilentCore",
+  "description": "Player-only notifier (action-bar) for Fabric 1.21.8 — potion pre-timeout, low health, drowning, nearby players.",
+  "authors": [
+    "Deryck-45"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/silentcore/icon.png",
+  "entrypoints": {
+    "main": [
+      "com.example.silentcore.SilentCoreMod"
+    ],
+    "client": [
+      "com.example.silentcore.client.SilentCoreClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric": "*",
+    "minecraft": "1.21.8"
+  }
+}
