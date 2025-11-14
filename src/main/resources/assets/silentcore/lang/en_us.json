@@ -1,0 +1,9 @@
+{  
+  "silentcore.potion.expiring": "[SilentCore] %s expiring in ~%d s",
+  "silentcore.health.low": "[SilentCore] Health low (%d/%d)",
+  "silentcore.drowning.start": "[SilentCore] You are drowning!",
+  "silentcore.drowning.stop": "[SilentCore] You recovered from drowning.",
+  "silentcore.player.nearby": "[SilentCore] Player nearby: %s",
+  "silentcore.toggle.enabled": "[SilentCore] Notifications enabled.",
+  "silentcore.toggle.disabled": "[SilentCore] Notifications disabled."
+}

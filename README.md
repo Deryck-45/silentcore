@@ -1,32 +1,27 @@
--Silent Core — Minimal Fabric Mod
+# SilentCore
 
-Overview
-- Minimal Fabric mod scaffold that logs a message on initialization.
-- Java 17, Fabric Loader, Fabric API. Adjust versions in `build.gradle`/`gradle.properties` as needed. This scaffold targets Minecraft `1.21.8`.
+SilentCore is a player-only notifier mod for Minecraft 1.21.8 (Fabric). It sends action-bar notifications to individual players when certain events happen, designed to avoid triggering anti-cheat systems.
 
-Setup (Windows / PowerShell)
-1. Install JDK 17 and set `JAVA_HOME`.
-2. Install Gradle or generate a wrapper:
+What it notifies you about
+- Potion effect pre-timeout (client-side action bar) — warns ~5 seconds before a potion effect expires.
+- Health low (client-side action bar) — warns when health drops to ≤25% of max.
+- Drowning start/stop (client-side action bar) — alerts when you start drowning or recover.
+- Player nearby (client-side action bar) — announces when another player enters your visual range (~48 blocks).
 
-gradle wrapper
-```powershell
-# from project root
-gradle wrapper
-```
+Key features
+- Client-side notifications to avoid server-side anticheat flags.
+- Per-player toggle — use /silentcore toggle to enable/disable notifications (server persists and syncs setting to client).
+- Ready to integrate with Mod Menu / Auto Config + Cloth Config.
 
-3. Build and run in the Minecraft dev environment:
+Development
+- Java 17
+- Fabric Loader + Fabric API
+- Use the provided Gradle build (Fabric Loom) to build and run:
+  - ./gradlew build
+  - ./gradlew runClient
 
-```powershell
-# generate IDE runs & run client (using wrapper if created)
-./gradlew genSources
-./gradlew runClient
+Notes
+- The server-side SilentCoreMod class handles the /silentcore toggle command and sends the per-player setting to clients via the "silentcore:settings" channel.
+- The client-side implementation (com.example.silentcore.client.SilentCoreClient) receives the toggle and performs all notifications locally using action-bar messages.
 
-# or build JAR
-./gradlew build
-# artifact at build/libs/silentcore-1.0.0.jar
-```
-
-Notes & next steps
-- Change Minecraft/loader/Fabric-API versions in `build.gradle` and `gradle.properties` to match your target.
-- Add content: items, blocks, commands, or event listeners in `src/main/java`.
-- Want Forge instead of Fabric, or a specific feature (item, block, command)? Tell me which and I'll add it.
+License: MIT
